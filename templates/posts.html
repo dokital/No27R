@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Holbach's</title>
+</head>
+<body>
+    {%  for post in posts %}
+    <h1>{{ post.title }}</h1>
+    <h3>{{  post.pub_date }}</h3>
+    {{ post.text }}
+    {%  endfor %}
+</body>
+</html>
