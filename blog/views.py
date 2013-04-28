@@ -1,13 +1,15 @@
 # Create your views here.
 from django.shortcuts import render_to_response
+from django.core.paginator import Paginator
 from blog.models import Post
 
-def getRecentPosts(request):
-    #Get all blog posts
-    posts = Post.objects.all()
+def getPosts(request, selected_page=1):
+    #Get all blog posts and sort
+    posts = Post.objects.all().order_by('-pub_date')
 
-    #Sort posts
-    sorted_posts = posts.order_by('-pub_date')
+    #Pages
+    pages = Paginator(posts, 10)
+    returned_page = pages.page(selected_page)
 
     #Display all posts
-    return render_to_response('posts.html', { 'posts':sorted_posts})
+    return render_to_response('posts.html', {'posts':returned_page.object_list})
