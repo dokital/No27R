@@ -14,6 +14,8 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
+
     #homepage
-    url(r'', 'blog.views.getRecentPosts'),
+    url(r'^$', 'blog.views.getPosts'),
+    url(r'^(?P<selected_page>\d+)/?$', 'blog.views.getPosts'),
 )
